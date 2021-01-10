@@ -29,6 +29,7 @@
 #include "Hacks/SkinChanger.h"
 #include "Hacks/Triggerbot.h"
 #include "Hacks/Visuals.h"
+#include "Hacks/Dump.h"
 
 #include "SDK/Engine.h"
 #include "SDK/Entity.h"
@@ -243,6 +244,7 @@ static void __stdcall paintTraverse(unsigned int panel, bool forceRepaint, bool 
         Misc::spectatorList();
         Misc::watermark();
         Visuals::hitMarker();
+        Dump::dump();
     }
     hooks->panel.callOriginal<void, 41>(panel, forceRepaint, allowForce);
 }

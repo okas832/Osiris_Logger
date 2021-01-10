@@ -286,6 +286,10 @@ public:
         int delay{ 1 };
         int rounds{ 1 };
     } reportbot;
+    struct {
+        bool enabled{ true };
+        std::string FilePath{ "C:\\hack\\dump.csv" };
+    } dump;
 private:
     std::filesystem::path path;
     std::vector<std::string> configs;

@@ -65,6 +65,7 @@ void GUI::render() noexcept
         renderMiscWindow();
         renderReportbotWindow();
         renderConfigWindow();
+        renderDumpWindow();
     } else {
         renderGuiStyle2();
     }
@@ -114,8 +115,24 @@ void GUI::renderMenuBar() noexcept
         ImGui::MenuItem("Misc", nullptr, &window.misc);
         ImGui::MenuItem("Reportbot", nullptr, &window.reportbot);
         ImGui::MenuItem("Config", nullptr, &window.config);
+        ImGui::MenuItem("Dump", nullptr, &window.dump);
         ImGui::EndMainMenuBar();
     }
+}
+
+void GUI::renderDumpWindow(bool contentOnly) noexcept
+{
+    if (!contentOnly) {
+        if (!window.dump)
+            return;
+        ImGui::SetNextWindowSize({ 0.0f, 0.0f });
+        ImGui::Begin("Dump", &window.dump, windowFlags);
+    }
+    ImGui::Text("Dump auto start when switch enabled");
+    ImGui::Checkbox("Enable", &config->dump.enabled);
+    ImGui::InputText("", &config->dump.FilePath);
+    if (!contentOnly)
+        ImGui::End();
 }
 
 void GUI::renderAimbotWindow(bool contentOnly) noexcept
@@ -1304,6 +1321,10 @@ void GUI::renderGuiStyle2() noexcept
         }
         if (ImGui::BeginTabItem("Config")) {
             renderConfigWindow(true);
+            ImGui::EndTabItem();
+        }
+        if (ImGui::BeginTabItem("Dump")) {
+            renderDumpWindow(true);
             ImGui::EndTabItem();
         }
         ImGui::EndTabBar();

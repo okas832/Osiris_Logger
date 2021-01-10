@@ -28,6 +28,7 @@ private:
     void renderMiscWindow(bool contentOnly = false) noexcept;
     void renderReportbotWindow(bool contentOnly = false) noexcept;
     void renderConfigWindow(bool contentOnly = false) noexcept;
+    void renderDumpWindow(bool contentOnly = false) noexcept;
     void renderGuiStyle2() noexcept;
 
     struct {
@@ -45,6 +46,7 @@ private:
         bool misc = false;
         bool reportbot = false;
         bool config = false;
+        bool dump = false;
     } window;
 
     struct {
